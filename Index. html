@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#111827"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<title>ADHD Cleaning Planner</title>
+
+<style>
+body{font-family:system-ui;background:#0b1020;color:#e5e7eb;margin:0}
+.card{background:#111827;margin:10px;padding:15px;border-radius:12px}
+h2{margin:0 0 10px}
+ul{list-style:none;padding:0}
+li{margin:8px 0}
+button{padding:10px;border-radius:10px;border:none;background:#1f2937;color:#fff}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2 id="zoneTitle">Today</h2>
+<ul id="zoneList"></ul>
+</div>
+
+<div class="card">
+<h2>🌅 Morning</h2>
+<ul id="morning"></ul>
+</div>
+
+<div class="card">
+<h2>🌙 Evening</h2>
+<ul id="evening"></ul>
+</div>
+
+<script>
+
+const zones = {
+1:["Kitchen","Clear counters","Dishwasher","Wipe surfaces","Fridge check","Vacuum","Mop"],
+2:["Living & Dining","Clear clutter","Wipe tables","Straighten sofa","Vacuum","Mop"],
+3:["Bathrooms","Clean toilet","Wipe sink","Shower spray","Vacuum","Mop"],
+4:["Bedroom","Change bedding","Clothes away","Clear bedside","Vacuum","Mop"],
+5:["Hall & Stairs","Shoes & coats","Clear surfaces","Banister","Vacuum","Mop"],
+6:["Garden/Bonus","Sweep","Tidy garden","Bins"],
+0:["Reset","Light tidy","Laundry reset","Relax"]
+};
+
+const day=new Date().getDay();
+const zone=zones[day];
+
+document.getElementById("zoneTitle").innerText="🎯 "+zone[0];
+
+zone.slice(1).forEach(t=>{
+let li=document.createElement("li");
+li.innerHTML='<input type="checkbox"> '+t;
+document.getElementById("zoneList").appendChild(li);
+});
+
+["Bed","Laundry","Rubbish","Bathroom wipe","Kitchen reset"]
+.forEach(t=>{
+let li=document.createElement("li");
+li.innerHTML='<input type="checkbox"> '+t;
+document.getElementById("morning").appendChild(li);
+});
+
+["Dishes","Rubbish","Tidy room","Put items back"]
+.forEach(t=>{
+let li=document.createElement("li");
+li.innerHTML='<input type="checkbox"> '+t;
+document.getElementById("evening").appendChild(li);
+});
+
+</script>
+
+</body>
+</html>
